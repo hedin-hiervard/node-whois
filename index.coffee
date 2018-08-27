@@ -47,7 +47,7 @@ util = require 'util'
 		parts = server.split ':'
 		server =
 			host: parts[0]
-			port: parts[1]
+			port: parseInt parts[1]
 
 	if typeof proxy is 'string'
 		parts = proxy.split ':'
@@ -126,10 +126,10 @@ util = require 'util'
 			socket.resume()
 
 	else
-		sockOpts = 
+		sockOpts =
 			host: server.host
 			port: server.port
-		
+
 		if options.bind
 			sockOpts.localAddress = options.bind
 
