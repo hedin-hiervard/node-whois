@@ -47,16 +47,17 @@ util = require 'util'
 		parts = server.split ':'
 		server =
 			host: parts[0]
-			port: if isNaN parseInt parts[1] then undefined else parseInt parts[1]
+			port: if !isNaN parseInt parts[1] then parseInt parts[1] else undefined
+
+  _.defaults server,
+    port: 43
+    query: "$addr\r\n"
+
 	if typeof proxy is 'string'
 		parts = proxy.split ':'
 		proxy =
 			ipaddress: parts[0]
-			port: if isNaN parseInt parts[1] then undefined else parseInt parts[1]
-
-  _.defaults server,
-		port: 43
-		query: "$addr\r\n"
+			port: if !isNaN parseInt parts[1] then parseInt parts[1] else undefined
 
 	if proxy
 		_.defaults proxy,
